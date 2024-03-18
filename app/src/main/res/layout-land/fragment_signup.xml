@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".SignupFragment" >
+
+    <TextView
+        android:id="@+id/alreadyLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter"
+        android:text="Already have an account? Sign In here:"
+        android:textSize="14sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/checkBox"
+        app:layout_constraintEnd_toEndOf="@+id/pwdInput"
+        app:layout_constraintStart_toStartOf="@+id/pwdInput" />
+
+    <Button
+        android:id="@+id/singInBtn"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:text="Sign In"
+        app:layout_constraintBaseline_toBaselineOf="@+id/signUpSubmitBtn"
+        app:layout_constraintEnd_toEndOf="@+id/alreadyLabel"
+        app:layout_constraintStart_toStartOf="@+id/alreadyLabel" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="506dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter"
+        android:text="Please fill in all the inputs!"
+        app:layout_constraintEnd_toEndOf="@+id/textView9"
+        app:layout_constraintStart_toStartOf="@+id/textView9"
+        tools:layout_editor_absoluteY="56dp" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/inter"
+        android:text="I've read and accept the &quot;Terms of Service&quot;."
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/dateOfBirthInput"
+        app:layout_constraintStart_toStartOf="@+id/dateOfBirthInput"
+        app:layout_constraintTop_toBottomOf="@+id/dateOfBirthInput" />
+
+    <EditText
+        android:id="@+id/dateOfBirthInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:fontFamily="@font/inter_thin"
+        android:inputType="date"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/emailInput"
+        app:layout_constraintStart_toStartOf="@+id/dateOfBirthLabel"
+        app:layout_constraintTop_toBottomOf="@+id/dateOfBirthLabel"
+        tools:text="@tools:sample/date/ddmmyy" />
+
+    <TextView
+        android:id="@+id/emailLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter"
+        android:text="Email:"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/firstNameLabel"
+        app:layout_constraintTop_toBottomOf="@+id/firstNameInput" />
+
+    <EditText
+        android:id="@+id/emailInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:fontFamily="@font/inter_thin"
+        android:inputType="textEmailAddress"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/firstNameInput"
+        app:layout_constraintStart_toStartOf="@+id/emailLabel"
+        app:layout_constraintTop_toBottomOf="@+id/emailLabel" />
+
+    <TextView
+        android:id="@+id/dateOfBirthLabel"
+        android:layout_width="106dp"
+        android:layout_height="24dp"
+        android:fontFamily="@font/inter"
+        android:text="Date of birth:"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/firstNameLabel"
+        app:layout_constraintTop_toBottomOf="@+id/emailInput" />
+
+    <EditText
+        android:id="@+id/firstNameInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:fontFamily="@font/inter_thin"
+        android:inputType="text"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/firstNameLabel"
+        app:layout_constraintTop_toBottomOf="@+id/firstNameLabel"
+        tools:text="@tools:sample/first_names" />
+
+    <TextView
+        android:id="@+id/pwdLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter"
+        android:text="Password:"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/lastNameLabel"
+        tools:layout_editor_absoluteY="147dp" />
+
+    <EditText
+        android:id="@+id/pwdInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:fontFamily="@font/inter_thin"
+        android:inputType="textPassword"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/lastNameInput"
+        app:layout_constraintStart_toStartOf="@+id/pwdLabel"
+        app:layout_constraintTop_toBottomOf="@+id/pwdLabel" />
+
+    <TextView
+        android:id="@+id/lastNameLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/inter"
+        android:text="Second Name:"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <EditText
+        android:id="@+id/lastNameInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:fontFamily="@font/inter_thin"
+        android:inputType="text"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView10"
+        app:layout_constraintStart_toStartOf="@+id/lastNameLabel"
+        tools:layout_editor_absoluteY="103dp"
+        tools:text="@tools:sample/last_names" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="506dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_bold"
+        android:text="Registration"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        tools:layout_editor_absoluteY="8dp" />
+
+    <Button
+        android:id="@+id/signUpSubmitBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        app:layout_constraintEnd_toEndOf="@+id/checkBox"
+        app:layout_constraintStart_toStartOf="@+id/checkBox"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+
+    <TextView
+        android:id="@+id/firstNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/inter"
+        android:text="First Name:"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/reg" />
+</androidx.constraintlayout.widget.ConstraintLayout>
