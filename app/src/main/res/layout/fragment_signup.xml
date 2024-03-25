@@ -185,27 +185,6 @@
         app:layout_constraintStart_toStartOf="@+id/firstNameLabel"
         app:layout_constraintTop_toBottomOf="@+id/dateOfBirthInput" />
 
-    <Button
-        android:id="@+id/singInBtn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Sign In"
-        app:layout_constraintEnd_toEndOf="@+id/signUpSubmitBtn"
-        app:layout_constraintStart_toStartOf="@+id/alreadyLabel"
-        app:layout_constraintTop_toBottomOf="@+id/alreadyLabel" />
-
-    <TextView
-        android:id="@+id/alreadyLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/inter"
-        android:text="Already have an account? Sign In here:"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/signUpSubmitBtn"
-        app:layout_constraintStart_toStartOf="@+id/signUpSubmitBtn"
-        app:layout_constraintTop_toBottomOf="@+id/signUpSubmitBtn" />
-
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="0dp"
