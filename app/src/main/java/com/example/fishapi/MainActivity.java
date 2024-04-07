@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -25,14 +24,11 @@ import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 import retrofit2.Call;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         return navController;
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -49,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        TextView test = findViewById(R.id.test);
+        //TextView test = findViewById(R.id.test);
 
         Toolbar mainToolbar = findViewById(R.id.mainToolbar);
         setSupportActionBar(mainToolbar);
@@ -77,12 +74,22 @@ public class MainActivity extends AppCompatActivity {
                         Type type = new TypeToken<List<Fish>>() {}.getType();
                         List<Fish> fishList = gson.fromJson(fishArray, type);
 
+                        RecyclerView recyclerView = findViewById(R.id.recycleView);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+                        FishAdapter fishAdapter = new FishAdapter();
+                        recyclerView.setAdapter(fishAdapter);
+
                         if (fishList != null && !fishList.isEmpty()) {
-                            RecyclerView recyclerView = findViewById(R.id.recyclerView);
-                            recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-                            FishAdapter fishAdapter = new FishAdapter(fishList);
-                            recyclerView.setAdapter(fishAdapter);
+                            for (Fish fish : fishList) {
+                                Log.d("FishName", "Fish name: " + fish.getName());
+                            }
+                            fishAdapter.setFishList(fishList);
+
+
+                        } else {
+                            Log.e("FishList", "Fish list is null or empty");
                         }
+
                     } else {
                         // A válasz üres vagy null
                     }

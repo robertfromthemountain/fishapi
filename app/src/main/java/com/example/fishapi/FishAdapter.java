@@ -13,34 +13,42 @@ public class FishAdapter extends RecyclerView.Adapter<FishAdapter.FishViewHolder
 
     private List<Fish> fishList;
 
-    public FishAdapter(List<Fish> fishList) {
+    public void setFishList(List<Fish> fishList) {
         this.fishList = fishList;
+        notifyDataSetChanged(); // Frissíti a RecyclerView-t az új adatokkal
     }
 
     @NonNull
     @Override
     public FishViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_layout, parent, false);
-        return new FishViewHolder(itemView);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_fish, parent, false);
+        return new FishViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull FishViewHolder holder, int position) {
         Fish fish = fishList.get(position);
-        holder.textViewFishName.setText(fish.getName());
+        holder.bind(fish);
     }
 
     @Override
     public int getItemCount() {
-        return fishList.size();
+        return fishList != null ? fishList.size() : 0;
     }
 
     public static class FishViewHolder extends RecyclerView.ViewHolder {
-        public TextView textViewFishName;
 
-        public FishViewHolder(View itemView) {
+        private TextView fishNameTextView;
+
+        public FishViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewFishName = itemView.findViewById(R.id.textViewFishName);
+            fishNameTextView = itemView.findViewById(R.id.fishNameTextView);
+        }
+
+        public void bind(Fish fish) {
+            fishNameTextView.setText(fish.getName());
+            // További adatok beállítása, ha szükséges
         }
     }
 }
+
