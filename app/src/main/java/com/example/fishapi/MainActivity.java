@@ -16,12 +16,15 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Callback;
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     public NavController navController() {
         return navController;
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -73,9 +77,10 @@ public class MainActivity extends AppCompatActivity {
                         List<Fish> fishList = gson.fromJson(fishArray, type);
 
                         if (fishList != null && !fishList.isEmpty()) {
-                            Fish firstFish = fishList.get(0);
-                            String fishName = firstFish.getName();
-                            runOnUiThread(() -> test.setText(fishName));
+                            RecyclerView recyclerView = findViewById(R.id.recyclerView);
+                            recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+                            FishAdapter fishAdapter = new FishAdapter(fishList);
+                            recyclerView.setAdapter(fishAdapter);
                         }
                     } else {
                         // A válasz üres vagy null
