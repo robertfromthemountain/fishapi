@@ -8,14 +8,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 public class FishAdapter extends RecyclerView.Adapter<FishAdapter.FishViewHolder> {
 
-    private List<Fish> fishList;
+    private List<Fish> fishList= new ArrayList<>();
 
     public void setFishList(List<Fish> fishList) {
         this.fishList = fishList;
-        notifyDataSetChanged(); // Frissíti a RecyclerView-t az új adatokkal
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -25,6 +26,7 @@ public class FishAdapter extends RecyclerView.Adapter<FishAdapter.FishViewHolder
         return new FishViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull FishViewHolder holder, int position) {
         Fish fish = fishList.get(position);
@@ -33,7 +35,7 @@ public class FishAdapter extends RecyclerView.Adapter<FishAdapter.FishViewHolder
 
     @Override
     public int getItemCount() {
-        return fishList != null ? fishList.size() : 0;
+        return fishList.size();
     }
 
     public static class FishViewHolder extends RecyclerView.ViewHolder {
@@ -47,7 +49,6 @@ public class FishAdapter extends RecyclerView.Adapter<FishAdapter.FishViewHolder
 
         public void bind(Fish fish) {
             fishNameTextView.setText(fish.getName());
-            // További adatok beállítása, ha szükséges
         }
     }
 }
