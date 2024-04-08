@@ -2,6 +2,7 @@ package com.example.fishapi;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +24,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 
@@ -83,7 +87,10 @@ public class MainActivity extends AppCompatActivity {
                             for (Fish fish : fishList) {
                                 Log.d("FishName", "Fish name: " + fish.getName());
                             }
+                            Log.d("FishListSize", "Fish list size: " + fishList.size());
+
                             fishAdapter.setFishList(fishList);
+                           //fishAdapter.notifyDataSetChanged();
 
 
                         } else {
@@ -96,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     // Sikertelen válasz
                 }
+
+
             }
 
             @Override
