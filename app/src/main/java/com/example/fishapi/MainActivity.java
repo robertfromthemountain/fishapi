@@ -1,6 +1,7 @@
 package com.example.fishapi;
 
 import android.content.SharedPreferences;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -24,9 +25,14 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.List;
 
@@ -35,6 +41,10 @@ import retrofit2.Response;
 import retrofit2.Call;
 
 public class MainActivity extends AppCompatActivity {
+
+    String fileName = "fishAPIResult.txt";
+
+    Context context = this;
 
     private NavController navController;
 
@@ -63,19 +73,43 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        /*File file = new File(context.getFilesDir(), fileName);
+        final JsonArray[] FishArray = new JsonArray[1];
+
+
+        if (file.exists()) {
+
+            FishArray[0] = readFromFile(file);
+
+        } else {*/
+
         FishApiService service = FishApiClient.getClient().create(FishApiService.class);
 
         Call<JsonArray> call = service.getFishData();
-
         call.enqueue(new Callback<JsonArray>() {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 if (response.isSuccessful()) {
                     JsonArray fishArray = response.body();
 
+                    String jsonFishString = fishArray.toString();
+
+                    try {
+                        File file = new File(context.getExternalFilesDir(null), fileName);
+                        FileWriter writer = new FileWriter(file);
+                        writer.append(jsonFishString);
+                        writer.flush();
+                        writer.close();
+                        Log.d("Fájlba írás: ", "Fájlba írás sikeres");
+                    } catch (IOException e) {
+                        Log.d("Fájlba írás: ", "Fájlba írás sikertelen");
+                        e.printStackTrace();
+                    }
+
                     if (fishArray != null && !fishArray.isJsonNull() && fishArray.size() > 0) {
                         Gson gson = new Gson();
-                        Type type = new TypeToken<List<Fish>>() {}.getType();
+                        Type type = new TypeToken<List<Fish>>() {
+                        }.getType();
                         List<Fish> fishList = gson.fromJson(fishArray, type);
 
                         RecyclerView recyclerView = findViewById(R.id.recycleView);
@@ -84,13 +118,13 @@ public class MainActivity extends AppCompatActivity {
                         recyclerView.setAdapter(fishAdapter);
 
                         if (fishList != null && !fishList.isEmpty()) {
-                            for (Fish fish : fishList) {
+                            /*for (Fish fish : fishList) {
                                 Log.d("FishName", "Fish name: " + fish.getName());
-                            }
-                            Log.d("FishListSize", "Fish list size: " + fishList.size());
+                            }*/
+                            //Log.d("FishListSize", "Fish list size: " + fishList.size());
 
                             fishAdapter.setFishList(fishList);
-                           //fishAdapter.notifyDataSetChanged();
+                            //fishAdapter.notifyDataSetChanged();
 
 
                         } else {
@@ -100,20 +134,15 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         // A válasz üres vagy null
                     }
-                } else {
-                    // Sikertelen válasz
                 }
-
-
             }
 
             @Override
             public void onFailure(Call<JsonArray> call, Throwable t) {
-                // Hálózati hiba
                 Log.e("NetworkError", "Hálózati hiba történt", t);
             }
-        });
 
+        });
     }
 
 
@@ -189,4 +218,25 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
         return prefs.getBoolean("IsLoggedIn", false);
     }
+    public static JsonArray readFromFile(File file) {
+        JsonArray jsonArray = null;
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+            bufferedReader.close();
+
+            // Szöveges JSON átalakítása JsonArray objektummá
+            String jsonString = stringBuilder.toString();
+            Gson gson = new Gson();
+            jsonArray = gson.fromJson(jsonString, JsonArray.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return jsonArray;
+    }
+
 }
