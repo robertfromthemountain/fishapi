@@ -59,8 +59,6 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        //TextView test = findViewById(R.id.test);
-
         Toolbar mainToolbar = findViewById(R.id.mainToolbar);
         setSupportActionBar(mainToolbar);
 
@@ -72,15 +70,19 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        /*File file = new File(context.getFilesDir(), fileName);
-        final JsonArray[] FishArray = new JsonArray[1];
+        File file = new File(context.getFilesDir(), fileName);
+        JsonArray FishArray; //= new JsonArray();
 
+        FishArray = readFromFile(file);
+        Log.d("Beolvasás:", "Fájl beolvasás sikeres");
+        Log.d("Beolvasás:", String.valueOf(FishArray));
 
         if (file.exists()) {
 
-            FishArray[0] = readFromFile(file);
+            FishArray = readFromFile(file);
+            Log.d("Beolvasás:", "Fájl beolvasás sikeres");
 
-        } else {*/
+        } else {}
 
         FishApiService service = FishApiClient.getClient().create(FishApiService.class);
 
