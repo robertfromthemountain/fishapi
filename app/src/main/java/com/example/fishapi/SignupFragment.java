@@ -33,7 +33,7 @@ public class SignupFragment extends Fragment {
         pwdInput = view.findViewById(R.id.pwdInput);
         dateOfBirthInput = view.findViewById(R.id.dateOfBirthInput);
         termsCheckBox = view.findViewById(R.id.checkBox);
-        signUpSubmitBtn = view.findViewById(R.id.signUpSubmitBtn);
+        signUpSubmitBtn = view.findViewById(R.id.signInBtn);
 
         dateOfBirthInput.setOnClickListener(v -> showDatePickerDialog());
 
