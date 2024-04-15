@@ -1,13 +1,10 @@
 package com.example.fishapi;
 
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,12 +26,7 @@ public class LoginFragment extends Fragment {
         pwdInput = view.findViewById(R.id.pwdInput);
         signInButton = view.findViewById(R.id.signInBtn);
 
-        signInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                handleLogin();
-            }
-        });
+        signInButton.setOnClickListener(v -> handleLogin());
 
         return view;
     }
@@ -57,6 +49,9 @@ public class LoginFragment extends Fragment {
                 DatabaseHelper.KEY_USER_EMAIL + "=? AND " + DatabaseHelper.KEY_USER_PASSWORD + "=?",
                 new String[]{email, password}, null, null, null);
         if (cursor != null &&cursor.moveToFirst()){
+            if (getActivity() instanceof MainActivity) {
+                ((MainActivity) getActivity()).setLoginState(true);
+            }
             Toast.makeText(getActivity(), "Login Successful!", Toast.LENGTH_SHORT).show();
             emailInput.setText("");
             pwdInput.setText("");
