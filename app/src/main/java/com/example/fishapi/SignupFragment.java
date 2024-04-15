@@ -1,21 +1,20 @@
 package com.example.fishapi;
 
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.CheckBox;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import java.util.Calendar;
 
@@ -36,19 +35,11 @@ public class SignupFragment extends Fragment {
         termsCheckBox = view.findViewById(R.id.checkBox);
         signUpSubmitBtn = view.findViewById(R.id.signUpSubmitBtn);
 
-        dateOfBirthInput.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePickerDialog();
-            }
-        });
+        dateOfBirthInput.setOnClickListener(v -> showDatePickerDialog());
 
-        signUpSubmitBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (validateForm()){
-                    registerUser();
-                }
+        signUpSubmitBtn.setOnClickListener(v -> {
+            if (validateForm()){
+                registerUser();
             }
         });
         return view;
@@ -61,12 +52,9 @@ public class SignupFragment extends Fragment {
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        String selectedDate = year + "-" + (month+1) + "-" + dayOfMonth;
-                        dateOfBirthInput.setText(selectedDate);
-                    }
+                (view, year1, month1, dayOfMonth) -> {
+                    String selectedDate = year1 + "-" + (month1 +1) + "-" + dayOfMonth;
+                    dateOfBirthInput.setText(selectedDate);
                 }, year, month, day);
         datePickerDialog.show();
     }
@@ -117,8 +105,34 @@ public class SignupFragment extends Fragment {
         return true;
     }
 
-    private void registerUser(){
-
-       Toast.makeText(getActivity(), "Registration Successful!", Toast.LENGTH_LONG).show();
+    private void clearInputFields() {
+        firstNameInput.setText("");
+        lastNameInput.setText("");
+        emailInput.setText("");
+        pwdInput.setText("");
+        dateOfBirthInput.setText("");
+        termsCheckBox.setChecked(false);
     }
+
+    private void registerUser(){
+        DatabaseHelper dbHelper = new DatabaseHelper(getContext());
+
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DatabaseHelper.KEY_USER_FIRST_NAME, firstNameInput.getText().toString());
+        values.put(DatabaseHelper.KEY_USER_LAST_NAME, lastNameInput.getText().toString());
+        values.put(DatabaseHelper.KEY_USER_EMAIL, emailInput.getText().toString());
+        values.put(DatabaseHelper.KEY_USER_PASSWORD, pwdInput.getText().toString());
+        values.put(DatabaseHelper.KEY_USER_DOB, dateOfBirthInput.getText().toString());
+
+        long userId = db.insert(DatabaseHelper.TABLE_USERS, null, values);
+        db.close();
+        if(userId > 0){
+            Toast.makeText(getActivity(), "Registration Successful!", Toast.LENGTH_LONG).show();
+
+            clearInputFields();
+        } else {
+            Toast.makeText(getActivity(), "Registration Failed!", Toast.LENGTH_LONG).show();
+        }
+}
 }
