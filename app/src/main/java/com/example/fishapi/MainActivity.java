@@ -82,9 +82,25 @@ public class MainActivity extends AppCompatActivity {
             FishArray = readFromFile(file);
             Log.d("Beolvasás:", "Fájl beolvasás sikeres");
 
-        } else {}
+        } else {
 
-        FishApiService service = FishApiClient.getClient().create(FishApiService.class);
+            FetchAPI.fetchFishData(context, fileName, new FetchAPI.FishDataCallback() {
+                @Override
+                public void onFishDataReceived(JsonArray fishArray) {
+
+                    RecyclerView recyclerView = findViewById(R.id.recycleView);
+                    processFishArray(fishArray, MainActivity.this, recyclerView);
+                }
+
+                @Override
+                public void onFailure(String errorMessage) {
+                    Log.e("API hiba", errorMessage);
+                }
+            });
+
+        }
+
+       /* FishApiService service = FishApiClient.getClient().create(FishApiService.class);
 
         Call<JsonArray> call = service.getFishData();
         call.enqueue(new Callback<JsonArray>() {
@@ -119,13 +135,9 @@ public class MainActivity extends AppCompatActivity {
                         recyclerView.setAdapter(fishAdapter);
 
                         if (fishList != null && !fishList.isEmpty()) {
-                            /*for (Fish fish : fishList) {
-                                Log.d("FishName", "Fish name: " + fish.getName());
-                            }*/
-                            //Log.d("FishListSize", "Fish list size: " + fishList.size());
 
                             fishAdapter.setFishList(fishList);
-                            //fishAdapter.notifyDataSetChanged();
+
 
 
                         } else {
@@ -143,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("NetworkError", "Hálózati hiba történt", t);
             }
 
-        });
+        });*/
     }
 
 
@@ -199,5 +211,26 @@ public class MainActivity extends AppCompatActivity {
         }
         return jsonArray;
     }
+
+
+    public static void processFishArray(JsonArray fishArray, Context context, RecyclerView recyclerView) {
+        if (fishArray != null && !fishArray.isJsonNull() && fishArray.size() > 0) {
+            Gson gson = new Gson();
+            Type type = new TypeToken<List<Fish>>() {}.getType();
+            List<Fish> fishList = gson.fromJson(fishArray, type);
+
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            FishAdapter fishAdapter = new FishAdapter();
+            recyclerView.setAdapter(fishAdapter);
+
+            if (fishList != null && !fishList.isEmpty()) {
+                fishAdapter.setFishList(fishList);
+                // fishAdapter.notifyDataSetChanged(); // Ez a sort ki lehet törölni, ha a setFishList metódus már hívja a notifyDataSetChanged-t
+            } else {
+                Log.e("FishList", "Fish list is null or empty");
+            }
+        }
+    }
+
 
 }
