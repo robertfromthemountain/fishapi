@@ -11,10 +11,14 @@
 
     <item
         android:id="@+id/action_login"
-        android:title="Sing In"
+        android:title="Sign In"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_signup"
-        android:title="Sing Up"
+        android:title="Sign Up"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_logout"
+        android:title="Logout"
         app:showAsAction="ifRoom" />
 </menu>

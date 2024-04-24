@@ -59,7 +59,7 @@
         tools:text="@tools:sample/last_names" />
 
     <Button
-        android:id="@+id/signUpSubmitBtn"
+        android:id="@+id/signInBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -166,8 +166,10 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:fontFamily="@font/inter_thin"
-        android:inputType="date"
+        android:inputType="none"
+        android:focusable="false"
         android:textSize="16sp"
+        android:drawableEnd="@drawable/calendar_16bp"
         app:layout_constraintBaseline_toBaselineOf="@+id/dateOfBirthLabel"
         app:layout_constraintEnd_toEndOf="@+id/firstNameInput"
         app:layout_constraintStart_toStartOf="@+id/firstNameInput"
@@ -184,27 +186,6 @@
         app:layout_constraintEnd_toEndOf="@+id/firstNameInput"
         app:layout_constraintStart_toStartOf="@+id/firstNameLabel"
         app:layout_constraintTop_toBottomOf="@+id/dateOfBirthInput" />
-
-    <Button
-        android:id="@+id/singInBtn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Sign In"
-        app:layout_constraintEnd_toEndOf="@+id/signUpSubmitBtn"
-        app:layout_constraintStart_toStartOf="@+id/alreadyLabel"
-        app:layout_constraintTop_toBottomOf="@+id/alreadyLabel" />
-
-    <TextView
-        android:id="@+id/alreadyLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/inter"
-        android:text="Already have an account? Sign In here:"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/signUpSubmitBtn"
-        app:layout_constraintStart_toStartOf="@+id/signUpSubmitBtn"
-        app:layout_constraintTop_toBottomOf="@+id/signUpSubmitBtn" />
 
     <ImageView
         android:id="@+id/imageView3"
