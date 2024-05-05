@@ -15,17 +15,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.fishapi.clients.RetrofitClient;
-import com.example.fishapi.dtos.FishItem;
-import com.example.fishapi.home.HomeFragment;
-
-import java.io.IOException;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -61,16 +61,15 @@ public class FishAdapter extends RecyclerView.Adapter<FishAdapter.FishViewHolder
 
         if (imgSrcSet != null && imgSrcSet.getImgSrc2x() != null) {
             Glide.with(context)
-                    .load(imgSrcSet.getImgSrc2x()) // 2x-es kép URL-jének betöltése
-                    .placeholder(R.drawable.placeholder_image) // Helyettesítő kép beállítása
-                    .centerCrop() // Kép középre vágása az ImageView-ban
+                    .load(imgSrcSet.getImgSrc2x())
+                    .placeholder(R.drawable.placeholder_image)
+                    .centerCrop()
                     .into(holder.imageViewFish);
         } else {
-            // Ha nincs elérhető kép, akkor helyettesítő képet jelenítünk meg
             Glide.with(context)
-                    .load(R.drawable.placeholder_image) // Helyettesítő kép betöltése
-                    .placeholder(R.drawable.placeholder_image) // Helyettesítő kép beállítása
-                    .centerCrop() // Kép középre vágása az ImageView-ban
+                    .load(R.drawable.placeholder_image)
+                    .placeholder(R.drawable.placeholder_image)
+                    .centerCrop()
                     .into(holder.imageViewFish);
         }
     }

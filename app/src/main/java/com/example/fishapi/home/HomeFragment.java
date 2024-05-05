@@ -39,8 +39,6 @@ public class HomeFragment extends Fragment {
         fishAdapter = new FishAdapter(requireContext(), new ArrayList<>());
         recyclerView.setAdapter(fishAdapter);
 
-        //navController = Navigation.findNavController(requireActivity(), R.id.fragmentContainerView);
-
         NavController navController = NavHostFragment.findNavController(this);
 
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(requireContext(), recyclerView,
@@ -83,17 +81,15 @@ public class HomeFragment extends Fragment {
     }
 
     private void fetchFishData() {
-        RetrofitClient retrofitClient = new RetrofitClient(); // Példányosítsd a RetrofitClient-et, ha még nem tetted volna meg
+        RetrofitClient retrofitClient = new RetrofitClient();
         retrofitClient.fetchFishData(new RetrofitClient.FishDataCallback() {
             @Override
             public void onSuccess(List<FishItem> fetchedFishList) {
-                // Frissítsd a listanézetet a frissen lekért halak listával
                 updateFishList(fetchedFishList);
             }
 
             @Override
             public void onFailure(Throwable t) {
-                // Hibakezelés
                 Log.e("RetrofitError", "Hiba történt", t);
                 Toast.makeText(requireContext(), "Hiba történt: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
