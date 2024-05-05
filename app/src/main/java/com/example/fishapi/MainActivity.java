@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.action_home)
         {
-            setTitle("Fisher's Companion");
+            setTitle("Angler's Diary");
             navController.navigate(R.id.homeFragment);
         } else if (id == R.id.action_login)
         {
