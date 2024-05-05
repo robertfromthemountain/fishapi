@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="16dp"
+    tools:ignore="MissingConstraints">
+
+    <TextView
+        android:id="@+id/textName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name:"
+        android:textSize="25sp"
+        tools:layout_editor_absoluteX="-3dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/textFamily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Family:"
+        android:textSize="21sp"
+        app:layout_constraintStart_toStartOf="@+id/textSuperfamily"
+        app:layout_constraintTop_toBottomOf="@+id/textSuperfamily" />
+
+    <TextView
+        android:id="@+id/textOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Order:"
+        android:textSize="21sp"
+        app:layout_constraintStart_toStartOf="@+id/textClass"
+        app:layout_constraintTop_toBottomOf="@+id/textClass" />
+
+    <TextView
+        android:id="@+id/textDomain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Domain:"
+        android:textSize="21sp"
+        app:layout_constraintStart_toStartOf="@+id/textName"
+        app:layout_constraintTop_toBottomOf="@+id/textName" />
+
+    <TextView
+        android:id="@+id/textPhylum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Phylum:"
+        android:textSize="21sp"
+        app:layout_constraintStart_toStartOf="@+id/textKingdom"
+        app:layout_constraintTop_toBottomOf="@+id/textKingdom" />
+
+    <TextView
+        android:id="@+id/textClass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Class:"
+        android:textSize="21sp"
+        app:layout_constraintStart_toStartOf="@+id/textPhylum"
+        app:layout_constraintTop_toBottomOf="@+id/textPhylum" />
+
+    <TextView
+        android:id="@+id/textSuperfamily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Superfamily:"
+        android:textSize="21sp"
+        app:layout_constraintStart_toStartOf="@+id/textOrder"
+        app:layout_constraintTop_toBottomOf="@+id/textOrder" />
+
+    <TextView
+        android:id="@+id/textKingdom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Kingdom:"
+        android:textSize="21sp"
+        app:layout_constraintStart_toStartOf="@+id/textDomain"
+        app:layout_constraintTop_toBottomOf="@+id/textDomain" />
+
+    <TextView
+        android:id="@+id/textConservationStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Conservation Status:"
+        android:textSize="21sp"
+        app:layout_constraintStart_toStartOf="@+id/textFamily"
+        app:layout_constraintTop_toBottomOf="@+id/textFamily" />
+
+    <ImageView
+        android:id="@+id/imageViewFish"
+        android:layout_width="395dp"
+        android:layout_height="254dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/placeholder_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textConservationStatus"
+        app:layout_constraintVertical_bias="0.581" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

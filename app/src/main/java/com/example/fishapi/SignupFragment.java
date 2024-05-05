@@ -62,10 +62,10 @@ public class SignupFragment extends Fragment {
     private boolean validateForm(){
         //Chcek if there are any empty fields:
         if (TextUtils.isEmpty(firstNameInput.getText())||
-        TextUtils.isEmpty(lastNameInput.getText())||
-        TextUtils.isEmpty(emailInput.getText())||
-        TextUtils.isEmpty(pwdInput.getText())||
-        TextUtils.isEmpty(dateOfBirthInput.getText())){
+                TextUtils.isEmpty(lastNameInput.getText())||
+                TextUtils.isEmpty(emailInput.getText())||
+                TextUtils.isEmpty(pwdInput.getText())||
+                TextUtils.isEmpty(dateOfBirthInput.getText())){
             Toast.makeText(getActivity(), "All fields must be filled!", Toast.LENGTH_LONG).show();
             return false;
         }
@@ -134,5 +134,5 @@ public class SignupFragment extends Fragment {
         } else {
             Toast.makeText(getActivity(), "Registration Failed!", Toast.LENGTH_LONG).show();
         }
-}
+    }
 }
