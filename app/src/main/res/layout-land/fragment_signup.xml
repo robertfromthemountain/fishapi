@@ -23,7 +23,7 @@
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:text="Sign In"
-        app:layout_constraintBaseline_toBaselineOf="@+id/signUpSubmitBtn"
+        app:layout_constraintBaseline_toBaselineOf="@+id/signInBtn"
         app:layout_constraintEnd_toEndOf="@+id/alreadyLabel"
         app:layout_constraintStart_toStartOf="@+id/alreadyLabel" />
 
@@ -175,7 +175,7 @@
         tools:layout_editor_absoluteY="8dp" />
 
     <Button
-        android:id="@+id/signUpSubmitBtn"
+        android:id="@+id/signInBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Sign Up"
