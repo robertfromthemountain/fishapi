@@ -5,7 +5,7 @@
 
     <item
         android:id="@+id/action_home"
-        android:title="Home"
+        android:title="Fisher's Companion"
         android:icon="@drawable/baseline_home_white_18dp"
         app:showAsAction="always" />
 
