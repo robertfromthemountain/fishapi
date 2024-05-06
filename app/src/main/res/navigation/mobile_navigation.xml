@@ -34,6 +34,10 @@
         android:name="com.example.fishapi.fishDetails.FishDetailFragment"
         android:label="Fish Detail"
         tools:layout="@layout/fragment_fish_detail" />
-
+    <fragment
+        android:id="@+id/recordCatchFragment"
+        android:name="com.example.fishapi.RecordCatchFragment"
+        android:label="Record Catch"
+        tools:layout="@layout/fragment_record_catch" />
 
 </navigation>

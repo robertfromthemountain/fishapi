@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +29,7 @@ public class RecordCatchFragment extends Fragment {
     private ImageView imageView;
     private EditText locationInput, weightInput, sizeInput, specieInput, descriptionInput;
     private Button saveBtn;
+    private Uri imageUri;
 
     @Nullable
     @Override
@@ -61,7 +64,14 @@ public class RecordCatchFragment extends Fragment {
         intent.setType("image/*");
         startActivityForResult(intent, IMAGE_PICK_CODE);
     }
-
+    private void clearInputFields() {
+        imageView.setImageBitmap(null);
+        locationInput.setText("");
+        weightInput.setText("");
+        sizeInput.setText("");
+        specieInput.setText("");
+        descriptionInput.setText("");
+    }
     private void saveCatch(int userId, String location, String weight, String size, String specie, String description) {
         DatabaseHelper dbHelper = new DatabaseHelper(getActivity());
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -72,21 +82,27 @@ public class RecordCatchFragment extends Fragment {
         values.put(DatabaseHelper.KEY_SIZE, size);
         values.put(DatabaseHelper.KEY_SPECIE, specie);
         values.put(DatabaseHelper.KEY_DESCRIPTION, description);
-
-        long id = db.insert(DatabaseHelper.TABLE_CATCHES, null, values);
-        if (id != -1) {
-            Toast.makeText(getActivity(), "Catch saved!", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(getActivity(), "Failed to save catch", Toast.LENGTH_SHORT).show();
+        if (imageUri != null) {
+            values.put(DatabaseHelper.KEY_IMAGE_URI, imageUri.toString());
         }
-        db.close();
+
+        try {
+            long id = db.insertOrThrow(DatabaseHelper.TABLE_CATCHES, null, values);
+            Toast.makeText(getActivity(), "Catch saved!", Toast.LENGTH_SHORT).show();
+            clearInputFields();
+        } catch (SQLException e) {
+            Log.e("Database Error", "Error inserting into DB", e);
+            Toast.makeText(getActivity(), "Failed to save catch: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        } finally {
+            db.close();
+        }
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
-            Uri imageUri = data.getData();
+            imageUri = data.getData();
             imageView.setImageURI(imageUri);
         }
     }

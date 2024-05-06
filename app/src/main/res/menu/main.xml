@@ -21,4 +21,9 @@
         android:id="@+id/action_logout"
         android:title="Logout"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_record"
+        android:title="Record"
+        android:icon="@drawable/plus_solid"
+    app:showAsAction="always" />
 </menu>
