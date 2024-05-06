@@ -49,8 +49,8 @@ public class FishDetailFragment extends Fragment {
         if (bundle != null) {
 
             int id = bundle.getInt("id", -1);
-            String name = bundle.getString("name", "");
-            String url = bundle.getString("url", "");
+            String name = bundle.getString("name", "N/A");
+            String url = bundle.getString("url", "N/A");
             String conservationStatus = bundle.getString("conservationStatus", "N/A");
             String domain = bundle.getString("domain", "N/A");
             String kingdom = bundle.getString("kingdom", "N/A");

@@ -40,18 +40,9 @@ public class RetrofitClient {
         call.enqueue(new Callback<List<FishItem>>() {
             @Override
             public void onResponse(Call<List<FishItem>> call, Response<List<FishItem>> response) {
-                //Log.d("APIVálasz:",response.toString());
                 if (response.isSuccessful() && response.body() != null) {
-
-                    //handleImgSrcSet(response.body());
-
                     List<FishItem> fishList = response.body();
                     callback.onSuccess(fishList);
-                    for (FishItem fish : fishList) {
-                        Log.d("FishName", fish.getName());
-                    }
-
-
                 } else {
                     callback.onFailure(new Exception("Sikertelen válasz"));
                 }

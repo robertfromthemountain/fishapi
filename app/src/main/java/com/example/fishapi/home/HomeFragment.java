@@ -51,25 +51,51 @@ public class HomeFragment extends Fragment {
                             if (selectedFish != null) {
                                 ScientificClassification scientificClassification = selectedFish.getMeta().getScientificClassification();
 
-                                if (scientificClassification != null) {
+                                //if (scientificClassification != null) {
                                     Bundle bundle = new Bundle();
                                     bundle.putInt("id", selectedFish.getId());
                                     bundle.putString("name", selectedFish.getName());
                                     bundle.putString("url", selectedFish.getUrl());
-                                    bundle.putString("conservationStatus", selectedFish.getMeta().getConservationStatus());
-                                    bundle.putString("domain", scientificClassification.getDomain());
-                                    bundle.putString("kingdom", scientificClassification.getKingdom());
-                                    bundle.putString("phylum", scientificClassification.getPhylum());
-                                    bundle.putString("classificationClass", scientificClassification.getClassType());
-                                    bundle.putString("order", scientificClassification.getOrder());
-                                    bundle.putString("superfamily", scientificClassification.getSuperfamily());
-                                    bundle.putString("family", scientificClassification.getFamily());
+
+                                    String ConservationStatus = selectedFish.getMeta().getConservationStatus();
+                                    bundle.putString("conservationStatus", ConservationStatus != null ? ConservationStatus : "N/A");
+
+                                    //bundle.putString("conservationStatus", selectedFish.getMeta().getConservationStatus());
+
+                                    // Domain
+                                    String domain = scientificClassification.getDomain();
+                                    bundle.putString("domain", domain != null ? domain : "N/A");
+
+                                    // Kingdom
+                                    String kingdom = scientificClassification.getKingdom();
+                                    bundle.putString("kingdom", kingdom != null ? kingdom : "N/A");
+
+                                    // Phylum
+                                    String phylum = scientificClassification.getPhylum();
+                                    bundle.putString("phylum", phylum != null ? phylum : "N/A");
+
+                                    // Class
+                                    String classificationClass = scientificClassification.getClassType();
+                                    bundle.putString("classificationClass", classificationClass != null ? classificationClass : "N/A");
+
+                                    // Order
+                                    String order = scientificClassification.getOrder();
+                                    bundle.putString("order", order != null ? order : "N/A");
+
+                                    // Superfamily
+                                    String superfamily = scientificClassification.getSuperfamily();
+                                    bundle.putString("superfamily", superfamily != null ? superfamily : "N/A");
+
+                                    // Family
+                                    String family = scientificClassification.getFamily();
+                                    bundle.putString("family", family != null ? family : "N/A");
+
                                     bundle.putString("img_link", selectedFish.getImgSrcSetElement().toString());
 
                                     Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_fishDetailFragment, bundle);
-                                } else {
+                                /*} else {
                                     Log.e("HomeFragment", "Selected fish has null scientific classification");
-                                }
+                                }*/
                             } else {
                                 Log.e("HomeFragment", "Selected fish is null");
                             }

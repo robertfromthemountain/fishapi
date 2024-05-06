@@ -56,29 +56,48 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        boolean isLoggedIn = getLoginState();
+
+        Log.d("MenuSetup", "Login state: " + isLoggedIn);
+
+        MenuItem loginItem = menu.findItem(R.id.action_login);
+        MenuItem signupItem = menu.findItem(R.id.action_signup);
+        MenuItem logoutItem = menu.findItem(R.id.action_logout);
+
+        loginItem.setVisible(!isLoggedIn);
+        signupItem.setVisible(!isLoggedIn);
+        logoutItem.setVisible(isLoggedIn);
+
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_home)
-        {
-            setTitle("Angler's Diary");
+        if (id == R.id.action_home){
+            setTitle("Home");
             navController.navigate(R.id.homeFragment);
-        } else if (id == R.id.action_login)
-        {
+            return true;
+        } else if (id == R.id.action_login) {
             setTitle("Sign In");
             navController.navigate(R.id.loginFragment);
-        } else if (id == R.id.action_signup)
-        {
+            return true;
+        } else if (id == R.id.action_signup) {
             setTitle("Sign Up");
             navController.navigate(R.id.signupFragment);
+            return true;
+        } else if (id == R.id.action_logout) {
+            setLoginState(false);
+            invalidateOptionsMenu();
+            setTitle("Sign In");
+            navController.navigate(R.id.loginFragment);
+            return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
-    private void showMessage(String message) {
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT)
-                .show();
-    }
 
     public void setLoginState(boolean isLoggedIn){
         SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
