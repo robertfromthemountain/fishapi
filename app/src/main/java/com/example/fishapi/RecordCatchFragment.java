@@ -46,8 +46,7 @@ public class RecordCatchFragment extends Fragment {
 
         imageView.setOnClickListener(v -> openGallery());
         saveBtn.setOnClickListener(v -> {
-            // Assuming you have a method or variable that fetches the current logged-in user's ID
-            int userId = getCurrentUserId(); // This method needs to be defined or replaced with actual logic to retrieve user ID
+            int userId = getCurrentUserId();
             saveCatch(userId,
                     locationInput.getText().toString(),
                     weightInput.getText().toString(),

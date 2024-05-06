@@ -8,9 +8,7 @@ import android.util.Log;
 public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String DATABASE_NAME = "fishApiDatabase";
     private static final int DATABASE_VERSION = 1;
-
     public static final String TABLE_USERS = "users";
-
     public static final String KEY_USER_ID = "id";
     public static final String KEY_USER_FIRST_NAME = "firstName";
     public static final String KEY_USER_LAST_NAME = "lastName";
@@ -19,7 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String KEY_USER_DOB = "dateOfBirth";
     public static final String TABLE_CATCHES = "catches";
     public static final String KEY_CATCH_ID = "id";
-    public static final String KEY_USER_ID_FK = "userId";  // Foreign key from users table
+    public static final String KEY_USER_ID_FK = "userId";
     public static final String KEY_LOCATION = "location";
     public static final String KEY_WEIGHT = "weight";
     public static final String KEY_SIZE = "size";

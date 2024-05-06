@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/_6_" />
+        />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -145,5 +145,15 @@
         app:layout_constraintEnd_toEndOf="@+id/descriptionInput"
         app:layout_constraintStart_toStartOf="@+id/descriptionInput"
         app:layout_constraintTop_toBottomOf="@+id/descriptionInput" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click here to upload a picture!"
+        app:layout_constraintBottom_toBottomOf="@+id/recordCatchImageView"
+        app:layout_constraintEnd_toEndOf="@+id/recordCatchImageView"
+        app:layout_constraintStart_toStartOf="@+id/recordCatchImageView"
+        app:layout_constraintTop_toTopOf="@+id/recordCatchImageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
