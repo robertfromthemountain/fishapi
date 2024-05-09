@@ -1,4 +1,4 @@
-package com.example.fishapi;
+package com.example.fishapi.recordCatch;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -21,6 +21,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.example.fishapi.DatabaseHelper;
+import com.example.fishapi.R;
+import com.example.fishapi.SessionManager;
 
 public class RecordCatchFragment extends Fragment {
 

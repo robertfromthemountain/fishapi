@@ -116,8 +116,5 @@ public class FishAdapter extends RecyclerView.Adapter<FishAdapter.FishViewHolder
 
     private OnItemClickListener itemClickListener;
 
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        this.itemClickListener = listener;
-    }
 }
 

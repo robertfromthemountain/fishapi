@@ -59,11 +59,13 @@ public class MainActivity extends AppCompatActivity {
         MenuItem signupItem = menu.findItem(R.id.action_signup);
         MenuItem logoutItem = menu.findItem(R.id.action_logout);
         MenuItem recordItem = menu.findItem(R.id.action_record);
+        MenuItem catchListItem = menu.findItem(R.id.action_catchlist);
 
         loginItem.setVisible(!isLoggedIn);
         signupItem.setVisible(!isLoggedIn);
         logoutItem.setVisible(isLoggedIn);
         recordItem.setVisible(isLoggedIn);
+        catchListItem.setVisible(isLoggedIn);
     }
 
     @Override
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_home) {
-            setTitle("Home");
+            setTitle("Angler's Diary");
             navController.navigate(R.id.homeFragment);
         } else if (id == R.id.action_login) {
             setTitle("Sign In");
@@ -84,7 +86,11 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.action_record) {
             setTitle("Record Catch");
             navController.navigate(R.id.recordCatchFragment);
+        } else if (id == R.id.action_catchlist) {
+            setTitle("List of Catches");
+            navController.navigate(R.id.catchListFragment);
         }
+
         return true;
     }
 

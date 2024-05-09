@@ -36,8 +36,23 @@
         tools:layout="@layout/fragment_fish_detail" />
     <fragment
         android:id="@+id/recordCatchFragment"
-        android:name="com.example.fishapi.RecordCatchFragment"
+        android:name="com.example.fishapi.recordCatch.RecordCatchFragment"
         android:label="Record Catch"
         tools:layout="@layout/fragment_record_catch" />
+    <fragment
+        android:id="@+id/catchListFragment"
+        android:name="com.example.fishapi.catchList.CatchListFragment"
+        android:label="Catchlist"
+        tools:layout="@layout/fragment_catch_list" >
+        <action
+        android:id="@+id/action_catchListFragment_to_catchDetailFragment"
+        app:destination="@id/catchDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/catchDetailFragment"
+        android:name="com.example.fishapi.catchDetails.CatchDetailsFragment"
+        android:label="Catch Details"
+        tools:layout="@layout/fragment_catch_details" />
 
 </navigation>

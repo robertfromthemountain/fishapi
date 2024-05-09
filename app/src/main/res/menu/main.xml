@@ -26,4 +26,9 @@
         android:title="Record"
         android:icon="@drawable/plus_solid"
     app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_catchlist"
+        android:title="List of Catches"
+        app:showAsAction="ifRoom" />
 </menu>
