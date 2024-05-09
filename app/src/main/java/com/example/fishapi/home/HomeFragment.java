@@ -59,33 +59,24 @@ public class HomeFragment extends Fragment {
                                 String ConservationStatus = selectedFish.getMeta().getConservationStatus();
                                 bundle.putString("conservationStatus", ConservationStatus != null ? ConservationStatus : "N/A");
 
-                                //bundle.putString("conservationStatus", selectedFish.getMeta().getConservationStatus());
-
-                                // Domain
                                 String domain = scientificClassification.getDomain();
                                 bundle.putString("domain", domain != null ? domain : "N/A");
 
-                                // Kingdom
                                 String kingdom = scientificClassification.getKingdom();
                                 bundle.putString("kingdom", kingdom != null ? kingdom : "N/A");
 
-                                // Phylum
                                 String phylum = scientificClassification.getPhylum();
                                 bundle.putString("phylum", phylum != null ? phylum : "N/A");
 
-                                // Class
                                 String classificationClass = scientificClassification.getClassType();
                                 bundle.putString("classificationClass", classificationClass != null ? classificationClass : "N/A");
 
-                                // Order
                                 String order = scientificClassification.getOrder();
                                 bundle.putString("order", order != null ? order : "N/A");
 
-                                // Superfamily
                                 String superfamily = scientificClassification.getSuperfamily();
                                 bundle.putString("superfamily", superfamily != null ? superfamily : "N/A");
 
-                                // Family
                                 String family = scientificClassification.getFamily();
                                 bundle.putString("family", family != null ? family : "N/A");
 

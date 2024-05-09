@@ -17,10 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.fishapi.DatabaseHelper;
+import com.example.fishapi.signUp.DatabaseHelper;
 import com.example.fishapi.R;
-import com.example.fishapi.dtos.ImgSrcSet;
-import com.google.gson.Gson;
 
 public class CatchDetailsFragment extends Fragment {
 

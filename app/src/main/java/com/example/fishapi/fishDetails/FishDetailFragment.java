@@ -84,7 +84,6 @@ public class FishDetailFragment extends Fragment {
                             .centerCrop()
                             .into(imageViewFish);
                 } else {
-                    // Ha a kép URL üres vagy null, helyettesítő képet jeleníts meg
                     imageViewFish.setImageResource(R.drawable.placeholder_image);
                 }
             }

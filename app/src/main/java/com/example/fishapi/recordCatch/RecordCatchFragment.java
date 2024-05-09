@@ -2,9 +2,7 @@ package com.example.fishapi.recordCatch;
 
 import android.app.Activity;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -22,9 +20,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.fishapi.DatabaseHelper;
+import com.example.fishapi.signUp.DatabaseHelper;
 import com.example.fishapi.R;
-import com.example.fishapi.SessionManager;
+import com.example.fishapi.login.SessionManager;
 
 public class RecordCatchFragment extends Fragment {
 

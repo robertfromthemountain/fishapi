@@ -1,4 +1,4 @@
-package com.example.fishapi;
+package com.example.fishapi.login;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,6 +12,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.fishapi.signUp.DatabaseHelper;
+import com.example.fishapi.MainActivity;
+import com.example.fishapi.R;
 
 public class LoginFragment extends Fragment {
     private EditText emailInput, pwdInput;

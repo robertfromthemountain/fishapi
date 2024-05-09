@@ -1,4 +1,4 @@
-package com.example.fishapi;
+package com.example.fishapi.signUp;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

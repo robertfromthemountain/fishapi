@@ -15,6 +15,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.example.fishapi.login.SessionManager;
+
 
 public class MainActivity extends AppCompatActivity {
     private NavController navController;
@@ -81,16 +83,15 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.action_signup) {
             setTitle("Sign Up");
             navController.navigate(R.id.signupFragment);
-        } else if (id == R.id.action_logout) {
-            logoutUser();
         } else if (id == R.id.action_record) {
             setTitle("Record Catch");
             navController.navigate(R.id.recordCatchFragment);
         } else if (id == R.id.action_catchlist) {
             setTitle("List of Catches");
             navController.navigate(R.id.catchListFragment);
+        } else if (id == R.id.action_logout) {
+        logoutUser();
         }
-
         return true;
     }
 

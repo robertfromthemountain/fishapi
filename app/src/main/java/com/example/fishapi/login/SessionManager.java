@@ -1,4 +1,4 @@
-package com.example.fishapi;
+package com.example.fishapi.login;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -18,9 +18,9 @@ public class SessionManager {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean(IS_LOGGED_IN, isLoggedIn);
         if (isLoggedIn) {
-            editor.putInt("UserId", userId);  // Assuming you're also storing user ID
+            editor.putInt("UserId", userId);
         } else {
-            editor.remove("UserId");  // Clear user ID on logout
+            editor.remove("UserId");
         }
         editor.apply();
     }
@@ -30,7 +30,7 @@ public class SessionManager {
     }
 
     public int getUserId() {
-        return prefs.getInt("UserId", -1);  // Default to -1 if no user ID stored
+        return prefs.getInt("UserId", -1);
     }
 }
 

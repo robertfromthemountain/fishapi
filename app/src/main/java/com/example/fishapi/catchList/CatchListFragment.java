@@ -17,9 +17,9 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fishapi.DatabaseHelper;
+import com.example.fishapi.signUp.DatabaseHelper;
 import com.example.fishapi.R;
-import com.example.fishapi.SessionManager;
+import com.example.fishapi.login.SessionManager;
 import com.example.fishapi.dtos.Catch;
 import com.example.fishapi.home.RecyclerItemClickListener;
 
