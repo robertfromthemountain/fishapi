@@ -1,6 +1,7 @@
 package com.example.fishapi.clients;
 
 import com.example.fishapi.dtos.FishItem;
+import com.example.fishapi.dtos.FishResponse;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface FishApiClient {
 
     //Call<FishResponse> getFishData();
 
-    Call<List<FishItem>> getFishData(); // Változtatás itt
+    Call<List<FishItem>> getFishData();
 }

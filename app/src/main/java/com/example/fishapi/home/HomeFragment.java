@@ -42,63 +42,52 @@ public class HomeFragment extends Fragment {
         NavController navController = NavHostFragment.findNavController(this);
 
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(requireContext(), recyclerView,
-                new RecyclerItemClickListener.OnItemClickListener() {
+                (view1, position) -> {
+                    if (position >= 0 && position < fishAdapter.getItemCount()) {
+                        FishItem selectedFish = fishAdapter.getItem(position);
 
-                    public void onItemClick(View view, int position) {
-                        if (position >= 0 && position < fishAdapter.getItemCount()) {
-                            FishItem selectedFish = fishAdapter.getItem(position);
+                        if (selectedFish != null) {
+                            ScientificClassification scientificClassification = selectedFish.getMeta().getScientificClassification();
 
-                            if (selectedFish != null) {
-                                ScientificClassification scientificClassification = selectedFish.getMeta().getScientificClassification();
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("id", selectedFish.getId());
+                            bundle.putString("name", selectedFish.getName());
+                            bundle.putString("url", selectedFish.getUrl());
 
-                                //if (scientificClassification != null) {
-                                    Bundle bundle = new Bundle();
-                                    bundle.putInt("id", selectedFish.getId());
-                                    bundle.putString("name", selectedFish.getName());
-                                    bundle.putString("url", selectedFish.getUrl());
+                            if (scientificClassification != null) {
 
-                                    String ConservationStatus = selectedFish.getMeta().getConservationStatus();
-                                    bundle.putString("conservationStatus", ConservationStatus != null ? ConservationStatus : "N/A");
+                                String ConservationStatus = selectedFish.getMeta().getConservationStatus();
+                                bundle.putString("conservationStatus", ConservationStatus != null ? ConservationStatus : "N/A");
 
-                                    //bundle.putString("conservationStatus", selectedFish.getMeta().getConservationStatus());
+                                String domain = scientificClassification.getDomain();
+                                bundle.putString("domain", domain != null ? domain : "N/A");
 
-                                    // Domain
-                                    String domain = scientificClassification.getDomain();
-                                    bundle.putString("domain", domain != null ? domain : "N/A");
+                                String kingdom = scientificClassification.getKingdom();
+                                bundle.putString("kingdom", kingdom != null ? kingdom : "N/A");
 
-                                    // Kingdom
-                                    String kingdom = scientificClassification.getKingdom();
-                                    bundle.putString("kingdom", kingdom != null ? kingdom : "N/A");
+                                String phylum = scientificClassification.getPhylum();
+                                bundle.putString("phylum", phylum != null ? phylum : "N/A");
 
-                                    // Phylum
-                                    String phylum = scientificClassification.getPhylum();
-                                    bundle.putString("phylum", phylum != null ? phylum : "N/A");
+                                String classificationClass = scientificClassification.getClassType();
+                                bundle.putString("classificationClass", classificationClass != null ? classificationClass : "N/A");
 
-                                    // Class
-                                    String classificationClass = scientificClassification.getClassType();
-                                    bundle.putString("classificationClass", classificationClass != null ? classificationClass : "N/A");
+                                String order = scientificClassification.getOrder();
+                                bundle.putString("order", order != null ? order : "N/A");
 
-                                    // Order
-                                    String order = scientificClassification.getOrder();
-                                    bundle.putString("order", order != null ? order : "N/A");
+                                String superfamily = scientificClassification.getSuperfamily();
+                                bundle.putString("superfamily", superfamily != null ? superfamily : "N/A");
 
-                                    // Superfamily
-                                    String superfamily = scientificClassification.getSuperfamily();
-                                    bundle.putString("superfamily", superfamily != null ? superfamily : "N/A");
+                                String family = scientificClassification.getFamily();
+                                bundle.putString("family", family != null ? family : "N/A");
 
-                                    // Family
-                                    String family = scientificClassification.getFamily();
-                                    bundle.putString("family", family != null ? family : "N/A");
+                                bundle.putString("img_link", selectedFish.getImgSrcSetElement().toString());
 
-                                    bundle.putString("img_link", selectedFish.getImgSrcSetElement().toString());
+                              }
 
-                                    Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_fishDetailFragment, bundle);
-                                /*} else {
-                                    Log.e("HomeFragment", "Selected fish has null scientific classification");
-                                }*/
-                            } else {
-                                Log.e("HomeFragment", "Selected fish is null");
-                            }
+                            Navigation.findNavController(view1).navigate(R.id.action_homeFragment_to_fishDetailFragment, bundle);
+
+                        } else {
+                            Log.e("HomeFragment", "Selected fish is null");
                         }
                     }
                 }));
@@ -130,8 +119,6 @@ public class HomeFragment extends Fragment {
 
     public void updateFishList(List<FishItem> newFishList) {
         fishAdapter.updateData(newFishList);
-
-        fishAdapter.notifyDataSetChanged();
     }
 
 

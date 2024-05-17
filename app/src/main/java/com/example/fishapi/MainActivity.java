@@ -1,12 +1,9 @@
 package com.example.fishapi;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -18,25 +15,22 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.example.fishapi.login.SessionManager;
+
 
 public class MainActivity extends AppCompatActivity {
-
     private NavController navController;
-
-
-
-
+    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+        sessionManager = new SessionManager(this);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
         Toolbar mainToolbar = findViewById(R.id.mainToolbar);
         setSupportActionBar(mainToolbar);
-
 
         navController = Navigation.findNavController(this, R.id.fragmentContainerView);
 
@@ -45,76 +39,72 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        Log.d("Startup", "User logged in state: " + sessionManager.isLoggedIn());
     }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+        updateMenuItems(menu);
         return true;
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-        boolean isLoggedIn = getLoginState();
+        updateMenuItems(menu);
+        return super.onPrepareOptionsMenu(menu);
+    }
 
-        Log.d("MenuSetup", "Login state: " + isLoggedIn);
+    private void updateMenuItems(Menu menu) {
+        boolean isLoggedIn = sessionManager.isLoggedIn();
 
         MenuItem loginItem = menu.findItem(R.id.action_login);
         MenuItem signupItem = menu.findItem(R.id.action_signup);
         MenuItem logoutItem = menu.findItem(R.id.action_logout);
+        MenuItem recordItem = menu.findItem(R.id.action_record);
+        MenuItem catchListItem = menu.findItem(R.id.action_catchlist);
 
         loginItem.setVisible(!isLoggedIn);
         signupItem.setVisible(!isLoggedIn);
         logoutItem.setVisible(isLoggedIn);
-
-        return true;
+        recordItem.setVisible(isLoggedIn);
+        catchListItem.setVisible(isLoggedIn);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_home){
-            setTitle("Home");
+
+        if (id == R.id.action_home) {
+            setTitle("Angler's Diary");
             navController.navigate(R.id.homeFragment);
-            return true;
         } else if (id == R.id.action_login) {
             setTitle("Sign In");
             navController.navigate(R.id.loginFragment);
-            return true;
         } else if (id == R.id.action_signup) {
             setTitle("Sign Up");
             navController.navigate(R.id.signupFragment);
-            return true;
+        } else if (id == R.id.action_record) {
+            setTitle("Record Catch");
+            navController.navigate(R.id.recordCatchFragment);
+        } else if (id == R.id.action_catchlist) {
+            setTitle("List of Catches");
+            navController.navigate(R.id.catchListFragment);
         } else if (id == R.id.action_logout) {
-            setLoginState(false);
-            invalidateOptionsMenu();
-            setTitle("Sign In");
-            navController.navigate(R.id.loginFragment);
-            return true;
+        logoutUser();
         }
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
 
-    public void setLoginState(boolean isLoggedIn){
-        SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putBoolean("IsLoggedIn", isLoggedIn);
-        editor.apply();
+    public void logoutUser() {
+        setLoginState(false, -1);
         invalidateOptionsMenu();
-
-
-        boolean check = prefs.getBoolean("IsLoggedIn", false);
-        Log.d("CheckLoginState", "Is logged in set to: " + isLoggedIn + " and read as: " + check);
+        setTitle("Sign In");
+        navController.navigate(R.id.loginFragment);
     }
 
-    public boolean getLoginState(){
-        SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
-        return prefs.getBoolean("IsLoggedIn", false);
+    public void setLoginState(boolean isLoggedIn, int userId) {
+        sessionManager.setLogin(isLoggedIn, userId);
+        invalidateOptionsMenu();
     }
-
-
 }

@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.fishapi.LoginFragment"
+        android:name="com.example.fishapi.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
-        android:name="com.example.fishapi.SignupFragment"
+        android:name="com.example.fishapi.signUp.SignupFragment"
         android:label="fragment_signup"
         tools:layout="@layout/fragment_signup" />
 
@@ -34,6 +34,25 @@
         android:name="com.example.fishapi.fishDetails.FishDetailFragment"
         android:label="Fish Detail"
         tools:layout="@layout/fragment_fish_detail" />
+    <fragment
+        android:id="@+id/recordCatchFragment"
+        android:name="com.example.fishapi.recordCatch.RecordCatchFragment"
+        android:label="Record Catch"
+        tools:layout="@layout/fragment_record_catch" />
+    <fragment
+        android:id="@+id/catchListFragment"
+        android:name="com.example.fishapi.catchList.CatchListFragment"
+        android:label="Catchlist"
+        tools:layout="@layout/fragment_catch_list" >
+        <action
+        android:id="@+id/action_catchListFragment_to_catchDetailFragment"
+        app:destination="@id/catchDetailFragment" />
+    </fragment>
 
+    <fragment
+        android:id="@+id/catchDetailFragment"
+        android:name="com.example.fishapi.catchDetails.CatchDetailsFragment"
+        android:label="Catch Details"
+        tools:layout="@layout/fragment_catch_details" />
 
 </navigation>

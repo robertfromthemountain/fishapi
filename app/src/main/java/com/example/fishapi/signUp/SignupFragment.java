@@ -1,4 +1,4 @@
-package com.example.fishapi;
+package com.example.fishapi.signUp;
 
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
@@ -15,6 +15,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+
+import com.example.fishapi.R;
+import com.example.fishapi.signUp.DatabaseHelper;
 
 import java.util.Calendar;
 
